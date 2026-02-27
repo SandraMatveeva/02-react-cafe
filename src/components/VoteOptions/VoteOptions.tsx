@@ -2,19 +2,19 @@ import type { VoteType } from '../../types/votes'
 import css from './VoteOptions.module.css'
 
 
-interface VoteOptionsParams {
+interface VoteOptionsProps {
     onVote: (type: VoteType) => void,
     onReset: () => void,
     canReset:boolean
 }
 
-export default function VoteOptions(params: VoteOptionsParams){
+export default function VoteOptions({ onVote, onReset, canReset }: VoteOptionsProps){
     return <div className={css.container}>
-        <button onClick={()=>params.onVote('good')} className={css.button}>Good</button>
-        <button onClick={()=>params.onVote('neutral')} className={css.button}>Neutral</button>
-        <button onClick={()=>params.onVote('bad')} className={css.button}>Bad</button>
-        {params.canReset &&<button onClick={()=>params.onReset()}  
-                disabled={!params.canReset} 
+        <button onClick={()=>onVote('good')} className={css.button}>Good</button>
+        <button onClick={()=>onVote('neutral')} className={css.button}>Neutral</button>
+        <button onClick={()=>onVote('bad')} className={css.button}>Bad</button>
+        {canReset &&<button onClick={()=>onReset()}  
+                disabled={!canReset} 
                 className={`${css.button} ${css.reset}`}>Reset</button>}
     </div>
 }
